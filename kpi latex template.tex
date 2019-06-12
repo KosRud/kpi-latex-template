@@ -1,0 +1,76 @@
+\documentclass[14pt]{extarticle}
+
+\usepackage{polyglossia}
+\setmainlanguage{ukrainian} 
+\setotherlanguage{english}
+\addto\captionsukrainian{\renewcommand{\contentsname}{ЗМІСТ}}
+
+\newfontfamily\ukrainianfont[Script=Cyrillic,Ligatures=TeX]{Times New Roman}
+\newfontfamily\englishfont[Script=Latin,Ligatures=TeX]{Times New Roman}
+
+% first section number
+%\setcounter{section}{0}
+
+% dotted line for table of contents vanilla
+%\makeatletter
+%\renewcommand*\l@section{\@dottedtocline{1}{0em}{1em}}
+%\makeatother
+
+\usepackage{titlesec}
+\titleformat{\section}[block]{\normalfont\filcenter}{}{0em}{\thesection. }{}
+\titleformat{\subsection}[block]{\normalfont\filcenter}{}{0em}{\thesubsection. }{}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+
+\usepackage{tocloft}
+\renewcommand\cftsecfont{\normalfont}
+\renewcommand\cftsecpagefont{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.}%
+\renewcommand{\cfttoctitlefont}{\hspace*{\fill}}
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+\usepackage{cite}
+
+\begin{document}
+
+\tableofcontents
+
+\vspace{1in}
+
+\section{РОЗДІЛ 1}
+\subsection{Пункт 1}
+текст
+\subsection{Пункт 2}
+текст
+\section{РОЗДІЛ 2}
+\subsection{Пункт 1}
+посилання \cite{bib1,bib3,bib4,bib5}
+\subsection{Пункт 2}
+текст
+
+\begin{thebibliography}{9}
+\bibitem{bib1} 
+Посилання 1
+\bibitem{bib2} 
+Посилання 2
+\bibitem{bib3} 
+Посилання на
+\begin{otherlanguage}{english}%
+"English book"%
+\end{otherlanguage}
+3
+
+\bibitem{bib4}
+Посилання 4
+
+\bibitem{bib5}
+Посилання 5
+
+\end{thebibliography}
+
+\end{document}
