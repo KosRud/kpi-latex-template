@@ -25,16 +25,6 @@
 % disallows using @ in macro
 \makeatother
 
-\usepackage{polyglossia}
-\setmainlanguage{ukrainian} 
-\setotherlanguage{english}
-\addto\captionsukrainian{\renewcommand{\contentsname}{ЗМІСТ}}
-
-% ukrainian font for polyglossia
-\newfontfamily\ukrainianfont[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
-% english font for polyglossia
-\newfontfamily\englishfont[Script=Latin,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
-
 % ignore font substitution warnings
 % it's the default font being substituted with polyglossia fonts
 
@@ -67,6 +57,17 @@
 % hspace with asterisk always creates space
 
 \usepackage{cite}
+
+% load polyglossia last to prevent it's changes being overwritten
+\usepackage{polyglossia}
+\setmainlanguage{ukrainian} 
+\setotherlanguage{english}
+\addto\captionsukrainian{\renewcommand{\contentsname}{ЗМІСТ}}
+
+% ukrainian font for polyglossia
+\newfontfamily\ukrainianfont[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
+% english font for polyglossia
+\newfontfamily\englishfont[Script=Latin,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
 
 \begin{document}
 
