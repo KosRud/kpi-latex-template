@@ -96,16 +96,21 @@
 
 \usepackage{cite}
 
-% load polyglossia in the end to prevent it's changes being overwritten
-\usepackage{polyglossia}
-\setmainlanguage{ukrainian} 
-\setotherlanguage{english}
-\addto\captionsukrainian{\renewcommand{\contentsname}{ЗМІСТ}}
+% font
+\usepackage{fontspec}
+\setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]
 
-% ukrainian font for polyglossia
-\newfontfamily\ukrainianfont[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
-% english font for polyglossia
-\newfontfamily\englishfont[Script=Latin,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
+% localization
+\renewcommand\contentsname{ЗМІСТ}
+\renewcommand\refname{СПИСОК ВИКОРИСТАНИХ ЛІТЕРАТУРНИХ ДЖЕРЕЛ}
+
+\usepackage{etoolbox}
+% replace first call of \section* in \thebibliography with \unnumberedsection
+\patchcmd{\thebibliography}{\section*}{\unnumberedsection}{}{}
+
+\usepackage{url}
+%urls use same font as other text
+\urlstyle{same}
 
 \begin{document}
 
@@ -135,11 +140,7 @@
 \bibitem{bib2} 
 Посилання 2
 \bibitem{bib3} 
-Посилання на
-\begin{otherlanguage}{english}%
-"English book"%
-\end{otherlanguage}
-3
+"English book"
 
 \bibitem{bib4}
 Посилання 4
