@@ -13,6 +13,17 @@
 % article does not support 14pt
 \documentclass[14pt]{extarticle}
 
+%set margins and page format
+%call geometry first so everything else uses set margins
+\usepackage[a4paper, portrait, includefoot, left=3cm, right=2cm, top=2cm, bottom=2cm, footskip=2.5ex]{geometry}
+
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{\thepage}
+
 %set line spacing
 \renewcommand{\baselinestretch}{1.5} 
 
@@ -55,14 +66,18 @@
 
 % customize table of contents
 \usepackage{tocloft}
-
+% use page style from fancyhdr for table of contents page (header/footer)
+\tocloftpagestyle{fancy}
+% section font in table of contents
 \renewcommand\cftsecfont{\normalfont}
+% section page number font in table of contents
 \renewcommand\cftsecpagefont{\normalfont}
-
 % dotted lines in table of contents
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% dot after section number
 \renewcommand{\cftsecaftersnum}{.}%
-
+% dot after subsection number
+\renewcommand{\cftsubsecaftersnum}{.}%
 % center the title of table of contents
 \renewcommand{\cfttoctitlefont}{\bfseries\hspace*{\fill}}
 \renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
@@ -81,7 +96,7 @@
 
 \usepackage{cite}
 
-% load polyglossia last to prevent it's changes being overwritten
+% load polyglossia in the end to prevent it's changes being overwritten
 \usepackage{polyglossia}
 \setmainlanguage{ukrainian} 
 \setotherlanguage{english}
@@ -95,6 +110,7 @@
 \begin{document}
 
 \tableofcontents
+\newpage
 
 \vspace{1in}
 
