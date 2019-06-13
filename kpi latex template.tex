@@ -13,6 +13,11 @@
 % article does not support 14pt
 \documentclass[14pt]{extarticle}
 
+%set line spacing
+\renewcommand{\baselinestretch}{1.5} 
+
+\setlength\parindent{0pt}
+
 % allows using @ in macro
 \makeatletter
 
@@ -33,10 +38,20 @@
 
 % customize title format and spacing for section, subsection, etc.
 \usepackage{titlesec}
-\titleformat{\section}[block]{\normalfont\filcenter}{}{0em}{\thesection. }{}
-\titleformat{\subsection}[block]{\normalfont\filcenter}{}{0em}{\thesubsection. }{}
+% a flag for unnumbered sections
+\newcommand{\issectionnumbered}{1}
+\titleformat{\section}[block]{\bfseries\filcenter}{}{0em}{\if\issectionnumbered1\thesection. \fi}{}
+\titleformat{\subsection}[block]{\bfseries}{}{0em}{\thesubsection. }{}
 \titlespacing{\section}{0pt}{0pt}{0pt}
 \titlespacing{\subsection}{0pt}{0pt}{0pt}
+
+% custom command for unnumbered sections
+\newcommand{\unnumberedsection}[1]{
+\renewcommand{\issectionnumbered}{0}
+\section*{#1}
+\addcontentsline{toc}{section}{#1}
+\renewcommand{\issectionnumbered}{1}
+}
 
 % customize table of contents
 \usepackage{tocloft}
@@ -49,12 +64,20 @@
 \renewcommand{\cftsecaftersnum}{.}%
 
 % center the title of table of contents
-\renewcommand{\cfttoctitlefont}{\hspace*{\fill}}
+\renewcommand{\cfttoctitlefont}{\bfseries\hspace*{\fill}}
 \renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
 % \hfill = hspace{\fill}
 % use hspace*{\fill} instead
 % hspace without asterisk sometimes drops spaces (like in the end of the line)
 % hspace with asterisk always creates space
+
+% don't skip vertical space before table of contents entries
+\setlength\cftbeforesecskip{0pt}
+\setlength\cftbeforesubsecskip{0pt}
+
+% don't skip vertical spacebe before and after table of contents title
+\setlength\cftbeforetoctitleskip{0pt}
+\setlength\cftaftertoctitleskip{0pt}
 
 \usepackage{cite}
 
@@ -75,9 +98,13 @@
 
 \vspace{1in}
 
+\unnumberedsection{ВСТУП}
+
+Текст вступу.
+
 \section{РОЗДІЛ 1}
 \subsection{Пункт 1}
-текст
+Тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст тестовий текст.
 \subsection{Пункт 2}
 текст
 \section{РОЗДІЛ 2}
