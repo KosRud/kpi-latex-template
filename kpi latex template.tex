@@ -1,38 +1,75 @@
+% allows using @ in macro
+\makeatletter
+
+% pt in MS Word is not equal to pt in LaTeX
+% pt in MS Word is equal to bp in LaTeX 
+% https://tex.stackexchange.com/questions/34024/setting-a-document-in-ms-word-12pt-12bp
+% this will globally replace size of pt to match MS Word
+\p@=1bp
+
+% disallows using @ in macro
+\makeatother
+
+% article does not support 14pt
 \documentclass[14pt]{extarticle}
+
+% allows using @ in macro
+\makeatletter
+
+% pt in MS Word is not equal to pt in LaTeX
+% pt in MS Word is equal to bp in LaTeX 
+% https://tex.stackexchange.com/questions/34024/setting-a-document-in-ms-word-12pt-12bp
+\p@=1bp
+
+% change bibliography item numbering style
+\renewcommand\@biblabel[1]{#1.}
+
+% dotted line for table of contents (vanilla, not needed with tocloft)
+%\renewcommand*\l@section{\@dottedtocline{1}{0em}{1em}}
+
+% disallows using @ in macro
+\makeatother
 
 \usepackage{polyglossia}
 \setmainlanguage{ukrainian} 
 \setotherlanguage{english}
 \addto\captionsukrainian{\renewcommand{\contentsname}{ЗМІСТ}}
 
-\newfontfamily\ukrainianfont[Script=Cyrillic,Ligatures=TeX]{Times New Roman}
-\newfontfamily\englishfont[Script=Latin,Ligatures=TeX]{Times New Roman}
+% ukrainian font for polyglossia
+\newfontfamily\ukrainianfont[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
+% english font for polyglossia
+\newfontfamily\englishfont[Script=Latin,Ligatures=TeX,SizeFeatures={Size=14}]{Times New Roman}
+
+% ignore font substitution warnings
+% it's the default font being substituted with polyglossia fonts
 
 % first section number
 %\setcounter{section}{0}
 
-% dotted line for table of contents vanilla
-%\makeatletter
-%\renewcommand*\l@section{\@dottedtocline{1}{0em}{1em}}
-%\makeatother
-
+% customize title format and spacing for section, subsection, etc.
 \usepackage{titlesec}
 \titleformat{\section}[block]{\normalfont\filcenter}{}{0em}{\thesection. }{}
 \titleformat{\subsection}[block]{\normalfont\filcenter}{}{0em}{\thesubsection. }{}
 \titlespacing{\section}{0pt}{0pt}{0pt}
 \titlespacing{\subsection}{0pt}{0pt}{0pt}
 
+% customize table of contents
 \usepackage{tocloft}
+
 \renewcommand\cftsecfont{\normalfont}
 \renewcommand\cftsecpagefont{\normalfont}
+
+% dotted lines in table of contents
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecaftersnum}{.}%
+
+% center the title of table of contents
 \renewcommand{\cfttoctitlefont}{\hspace*{\fill}}
 \renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
-
-\makeatletter
-\renewcommand\@biblabel[1]{#1.}
-\makeatother
+% \hfill = hspace{\fill}
+% use hspace*{\fill} instead
+% hspace without asterisk sometimes drops spaces (like in the end of the line)
+% hspace with asterisk always creates space
 
 \usepackage{cite}
 
