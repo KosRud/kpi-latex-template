@@ -107,6 +107,8 @@
 \usepackage{etoolbox}
 % replace first call of \section* in \thebibliography with \unnumberedsection
 \patchcmd{\thebibliography}{\section*}{\unnumberedsection}{}{}
+% section starts at new page
+\pretocmd{\section}{\newpage}{}{}
 
 \usepackage{url}
 %urls use same font as other text
