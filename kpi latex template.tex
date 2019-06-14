@@ -27,7 +27,8 @@
 %set line spacing
 \renewcommand{\baselinestretch}{1.5} 
 
-\setlength\parindent{0pt}
+%paragraph indentation
+\setlength\parindent{1cm}
 
 % allows using @ in macro
 \makeatletter
@@ -96,6 +97,8 @@
 
 \usepackage{cite}
 
+\usepackage{indentfirst}
+
 % font
 \usepackage{fontspec}
 \setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]
@@ -120,6 +123,9 @@
 % localization (overwrites polyglossia on purpose)
 \renewcommand\contentsname{ЗМІСТ}
 \renewcommand\refname{СПИСОК ВИКОРИСТАНИХ ЛІТЕРАТУРНИХ ДЖЕРЕЛ}
+
+% command for generating a bunch of text
+\usepackage{lipsum}
 
 \begin{document}
 
