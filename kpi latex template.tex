@@ -100,10 +100,6 @@
 \usepackage{fontspec}
 \setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]
 
-% localization
-\renewcommand\contentsname{ЗМІСТ}
-\renewcommand\refname{СПИСОК ВИКОРИСТАНИХ ЛІТЕРАТУРНИХ ДЖЕРЕЛ}
-
 \usepackage{etoolbox}
 % replace first call of \section* in \thebibliography with \unnumberedsection
 \patchcmd{\thebibliography}{\section*}{\unnumberedsection}{}{}
@@ -116,6 +112,14 @@
 
 %forbid automatic hyphenation
 \usepackage[none]{hyphenat}
+
+% load polyglossia in the end to prevent it's changes being overwritten
+\usepackage{polyglossia}
+\setmainlanguage{ukrainian}
+
+% localization (overwrites polyglossia on purpose)
+\renewcommand\contentsname{ЗМІСТ}
+\renewcommand\refname{СПИСОК ВИКОРИСТАНИХ ЛІТЕРАТУРНИХ ДЖЕРЕЛ}
 
 \begin{document}
 
