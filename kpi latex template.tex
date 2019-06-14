@@ -110,11 +110,13 @@
 \pretocmd{\section}{\newpage}{}{}
 
 \usepackage{url}
-%urls use same font as other text
+% urls use same font as other text
 \urlstyle{same}
 
-%forbid automatic hyphenation
+% forbid automatic hyphenation
 \usepackage[none]{hyphenat}
+% fix messed up alignment due to forbidden hyphenation
+\setlength\emergencystretch{\hsize}
 
 % load polyglossia in the end to prevent it's changes being overwritten
 \usepackage{polyglossia}
