@@ -30,10 +30,6 @@
 % paragraph indentation
 \setlength\parindent{1cm}
 
-% one line skip before and after figure
-\setlength{\textfloatsep}{1cm}
-\setlength{\intextsep}{1cm}
-
 % allows using @ in macro
 \makeatletter
 
@@ -109,16 +105,17 @@
 
 \usepackage{mathspec}
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional},SizeFeatures={Size=14}]{Cambria Math}
+\newfontfamily\smalltimes{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=8}]
 \setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]
 
-% \textsubscript
-\usepackage{fixltx2e}
+\renewcommand{\textsubscript}[1]{$_{\smalltimes\text{#1}}$}
+\renewcommand{\textsuperscript}[1]{$^{\smalltimes\text{#1}}$}
 
 \usepackage{etoolbox}
 % replace first call of \section* in \thebibliography with \unnumberedsection
 \patchcmd{\thebibliography}{\section*}{\unnumberedsection}{}{}
 % section starts at new page
-\pretocmd{\section}{\newpage}{}{}
+% \pretocmd{\section}{\newpage}{}{}
 % bottom vspace from figure is bigger due to line interval
 % make it equal by adding some on top
 \pretocmd{\figure}{\vspace{0.5cm}}{}{}
@@ -152,12 +149,18 @@
 \captionsetup{labelsep=dot}
 % multiple images in one figure
 \usepackage{subcaption}
+% one line skip before and after figure
+\setlength{\textfloatsep}{1cm}
+\setlength{\intextsep}{1cm}
+%caption alignment
+\captionsetup[figure]{justification=centering, singlelinecheck=off}
+\captionsetup[table]{justification=centering, singlelinecheck=off}
 
 % count figures within section
 % \usepackage{chngcntr}
 % \counterwithin{table}{section}
 % \counterwithin{figure}{section}
-
+g
 \begin{document}
 
 \tableofcontents
