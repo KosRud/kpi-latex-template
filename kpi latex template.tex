@@ -14,7 +14,7 @@
 \documentclass[14pt]{extarticle}
 
 %set margins and page format
-%call geometry first so everything else uses set margins
+% call geometry first so everything else uses set margins
 \usepackage[a4paper, portrait, includefoot, left=3cm, right=2cm, top=2cm, bottom=2cm, footskip=14pt]{geometry}
 
 \usepackage{fancyhdr}
@@ -24,11 +24,15 @@
 \fancyhf{}
 \rfoot{\thepage}
 
-%set line spacing
+% set line spacing
 \renewcommand{\baselinestretch}{1.5} 
 
-%paragraph indentation
+% paragraph indentation
 \setlength\parindent{1cm}
+
+% one line skip before and after figure
+\setlength{\textfloatsep}{1cm}
+\setlength{\intextsep}{1cm}
 
 % allows using @ in macro
 \makeatletter
@@ -100,23 +104,32 @@
 \usepackage{indentfirst}
 
 % font
-\usepackage{fontspec}
+% loaded by mathspec
+% \usepackage{fontspec}
+
+\usepackage{mathspec}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional},SizeFeatures={Size=14}]{Cambria Math}
 \setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]
+
+% \textsubscript
+\usepackage{fixltx2e}
 
 \usepackage{etoolbox}
 % replace first call of \section* in \thebibliography with \unnumberedsection
 \patchcmd{\thebibliography}{\section*}{\unnumberedsection}{}{}
 % section starts at new page
 \pretocmd{\section}{\newpage}{}{}
+% bottom vspace from figure is bigger due to line interval
+% make it equal by adding some on top
+\pretocmd{\figure}{\vspace{0.5cm}}{}{}
 
 \usepackage{url}
-% urls use same font as other text
+%urls use same font as other text
 \urlstyle{same}
 
-% forbid automatic hyphenation
+%forbid automatic hyphenation
 \usepackage[none]{hyphenat}
-% fix messed up alignment due to forbidden hyphenation
-\setlength\emergencystretch{\hsize}
+\sloppy
 
 % load polyglossia in the end to prevent it's changes being overwritten
 \usepackage{polyglossia}
@@ -128,6 +141,22 @@
 
 % command for generating a bunch of text
 \usepackage{lipsum}
+
+% images
+\usepackage{graphicx}
+%  captions
+\usepackage{caption}
+% declare dot as separator for caption label
+\DeclareCaptionLabelSeparator{dot}{. }
+% use dot as separator for caption label
+\captionsetup{labelsep=dot}
+% multiple images in one figure
+\usepackage{subcaption}
+
+% count figures within section
+% \usepackage{chngcntr}
+% \counterwithin{table}{section}
+% \counterwithin{figure}{section}
 
 \begin{document}
 
