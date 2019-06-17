@@ -10,12 +10,15 @@
 % disallows using @ in macro
 \makeatother
 
+% arbitrary font sizes
+\RequirePackage{fix-cm}
+
 % article does not support 14pt
 \documentclass[14pt]{extarticle}
 
 %set margins and page format
 % call geometry first so everything else uses set margins
-\usepackage[a4paper, portrait, includefoot, left=3cm, right=2cm, top=2cm, bottom=2cm, footskip=14pt]{geometry}
+\usepackage[a4paper, portrait, includefoot, left=3cm, right=2cm, top=2cm, bottom=2cm, footskip=35pt]{geometry}
 
 \usepackage{fancyhdr}
 \renewcommand{\headrulewidth}{0pt}
@@ -30,6 +33,10 @@
 % paragraph indentation
 \setlength\parindent{1cm}
 
+% indentation for list items, no additional space between list items
+\usepackage{enumitem}
+\setlist{leftmargin=0.5cm,nolistsep}
+
 % allows using @ in macro
 \makeatletter
 
@@ -41,9 +48,6 @@
 
 % disallows using @ in macro
 \makeatother
-
-% ignore font substitution warnings
-% it's the default font being substituted with polyglossia fonts
 
 % first section number
 %\setcounter{section}{0}
@@ -103,22 +107,22 @@
 % loaded by mathspec
 % \usepackage{fontspec}
 
+\usepackage{amsmath}
 \usepackage{mathspec}
-\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional},SizeFeatures={Size=14}]{Cambria Math}
-\newfontfamily\smalltimes{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=8}]
-\setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX,SizeFeatures={Size=14}]
+\setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Cambria Math}
+\setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX]
 
-\renewcommand{\textsubscript}[1]{$_{\smalltimes\text{#1}}$}
-\renewcommand{\textsuperscript}[1]{$^{\smalltimes\text{#1}}$}
+\renewcommand{\textsubscript}[1]{$_{\small\text{#1}}$}
+\renewcommand{\textsuperscript}[1]{$^{\small\text{#1}}$}
 
 \usepackage{etoolbox}
 % replace first call of \section* in \thebibliography with \unnumberedsection
 \patchcmd{\thebibliography}{\section*}{\unnumberedsection}{}{}
-% section starts at new page
-% \pretocmd{\section}{\newpage}{}{}
 % bottom vspace from figure is bigger due to line interval
 % make it equal by adding some on top
 \pretocmd{\figure}{\vspace{0.5cm}}{}{}
+% default font size
+\apptocmd{\document}{\fontsize{14}{21}\selectfont}{}{}
 
 \usepackage{url}
 %urls use same font as other text
@@ -132,9 +136,10 @@
 \usepackage{polyglossia}
 \setmainlanguage{ukrainian}
 
-% localization (overwrites polyglossia on purpose)
+\addto\captionsukrainian{
 \renewcommand\contentsname{ЗМІСТ}
 \renewcommand\refname{СПИСОК ВИКОРИСТАНИХ ЛІТЕРАТУРНИХ ДЖЕРЕЛ}
+}
 
 % command for generating a bunch of text
 \usepackage{lipsum}
@@ -155,12 +160,14 @@
 %caption alignment
 \captionsetup[figure]{justification=centering, singlelinecheck=off}
 \captionsetup[table]{justification=centering, singlelinecheck=off}
+% figure[H] to force position in text
+\usepackage{float}
 
 % count figures within section
 % \usepackage{chngcntr}
 % \counterwithin{table}{section}
 % \counterwithin{figure}{section}
-g
+
 \begin{document}
 
 \tableofcontents
