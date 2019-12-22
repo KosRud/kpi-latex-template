@@ -160,7 +160,6 @@
 %caption alignment
 \captionsetup[figure]{justification=centering, singlelinecheck=off}
 \captionsetup[table]{justification=centering, singlelinecheck=off}
-% figure[H] to force position in text
 \usepackage{float}
 
 % count figures within section
@@ -168,12 +167,15 @@
 % \counterwithin{table}{section}
 % \counterwithin{figure}{section}
 
+% for \FloatBarrier
+	% https://tex.stackexchange.com/questions/19766/how-to-control-the-position-of-floating-images
+\usepackage{placeins}
+
 \begin{document}
 
 \tableofcontents
-\newpage
 
-\vspace{1in}
+\newpage
 
 \unnumberedsection{ВСТУП}
 
