@@ -108,6 +108,11 @@
 % \usepackage{fontspec}
 
 \usepackage{amsmath}
+\setlength{\abovedisplayskip}{0cm}
+\setlength{\belowdisplayskip}{0cm}
+\setlength{\abovedisplayshortskip}{0cm}
+\setlength{\belowdisplayshortskip}{0cm}
+% math fonts
 \usepackage{mathspec}
 \setmathsfont(Digits,Latin,Greek)[Numbers={Lining,Proportional}]{Cambria Math}
 \setmainfont{Times New Roman}[Script=Cyrillic,Ligatures=TeX]
@@ -122,7 +127,16 @@
 % make it equal by adding some on top
 \pretocmd{\figure}{\vspace{0.5cm}}{}{}
 % default font size
-\apptocmd{\document}{\fontsize{14}{21}\selectfont}{}{}
+\apptocmd{\document}{
+	\fontsize{14}{21}
+	\selectfont
+	% vertical space before and after equation
+	% should be defined within document
+	\setlength{\abovedisplayskip}{0.5\baselineskip}
+	\setlength{\belowdisplayskip}{0.5\baselineskip}
+	\setlength{\abovedisplayshortskip}{0.5\baselineskip}
+	\setlength{\belowdisplayshortskip}{0.5\baselineskip}
+}{}{}
 
 \usepackage{url}
 %urls use same font as other text
@@ -155,12 +169,20 @@
 % multiple images in one figure
 \usepackage{subcaption}
 % one line skip before and after figure
-\setlength{\textfloatsep}{1cm}
-\setlength{\intextsep}{1cm}
+	% https://tex.stackexchange.com/questions/24454/space-after-float-with-h
+\setlength{\textfloatsep}{0cm}
+\setlength{\intextsep}{0cm}
+\setlength{\floatsep}{0cm}
+
 %caption alignment
 \captionsetup[figure]{justification=centering, singlelinecheck=off}
 \captionsetup[table]{justification=centering, singlelinecheck=off}
 \usepackage{float}
+% for \FloatBarrier
+\usepackage{placeins}
+% float \FloatBarrier
+\BeforeBeginEnvironment{figure}{\FloatBarrier}
+\AfterEndEnvironment{figure}{\FloatBarrier}
 
 % count figures within section
 % \usepackage{chngcntr}
@@ -170,6 +192,24 @@
 % for \FloatBarrier
 	% https://tex.stackexchange.com/questions/19766/how-to-control-the-position-of-floating-images
 \usepackage{placeins}
+
+%--------------------------custom commands------------------------------------------------------------------------------------
+
+\newcommand{\annotatedEquation}[3]{
+	% don't uncomment, change abovedisplayskip instead
+	%\vspace{\baselineskip}
+	\begin{equation}
+		\label{#1}
+		#2
+	\end{equation}
+	\noindent
+	\ignorespaces
+	#3
+	%
+	%\vspace{\baselineskip}
+}
+
+%--------------------------begin text-----------------------------------------------------------------------------------------
 
 \begin{document}
 
